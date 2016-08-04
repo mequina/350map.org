@@ -1,7 +1,7 @@
 {
   "name": "350map.org",
   "scripts": {
-    "build": "",
+    "build": "webpack",
     "start": "webpack-dev-server --progress --colors"
   },
   "author": "350.org",

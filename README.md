@@ -2,13 +2,16 @@
 
 ## Setup
 
-1. Make sure you have `bower` [installed](https://bower.io/#install-bower): `npm install -g bower`
-2. Run `bower install` to download all dependencies
-3. Make sure you have `webpack` and `webpack-dev-server` installed: `npm install -g webpack webpack-dev-server`
+1. Make sure you have `node` and `npm` [installed](https://nodejs.org/en/download/)
+2. Run `npm install` to download all dependencies
+
+## Build
+
+1. For a one-time build, run `npm run build`
+2. The JS files will be bundled into `bundle.js`
+3. You need to run this command to update `bundle.js` before pushing new code to production
 
 ## Running the server
 
-1. Run `webpack-dev-server --progress --colors`
-2. Go to [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/)
-3. Webpack bundles the files once they are changed, so no need to restart the server to pickup new code!
-
+1. Run `npm start` and go to [http://localhost:8080](http://localhost:8080)
+2. Webpack bundles the files once they are changed, so no need to restart the server to pickup new code!
