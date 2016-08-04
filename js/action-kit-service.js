@@ -2,6 +2,10 @@ var config = require("./config.js");
 var iconService = require("./icon-service.js");
 var templateService = require("./template-service.js");
 
+var $ = require('jquery');
+var Handlebars = require('handlebars');
+var moment = require('moment');
+
 module.exports.fetchActionKitData = function fetchActionKitData(campaignsString, callback) {
   if (!campaignsString) {
     callback({});
@@ -18,7 +22,7 @@ module.exports.fetchActionKitData = function fetchActionKitData(campaignsString,
     actionKitRequests.push($.ajax({
       url: config.actionKitUrl + campaign + '?template_set=json_nearby_events&jsonp=?',
       dataType: 'jsonp',
-      success: function (data) {
+      success: function(data) {
         var markers = L.layerGroup();
         var campaignName = data.campaign || campaign;
         if (data.events) {
@@ -42,4 +46,4 @@ module.exports.fetchActionKitData = function fetchActionKitData(campaignsString,
   });
 
   return $.Deferred().promise();
-}
+};

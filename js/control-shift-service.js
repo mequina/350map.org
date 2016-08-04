@@ -2,6 +2,9 @@ var config = require("./config.js");
 var iconService = require("./icon-service.js");
 var templateService = require("./template-service.js");
 
+var $ = require('jquery');
+var Handlebars = require('handlebars');
+
 var urlSeparator = ':';
 var categorySeparator = '|';
 var characterLimit = 200;
@@ -30,7 +33,7 @@ module.exports.fetchControlShiftData = function(categoriesString, callback) {
 
     renderMarkers(callback);
   });
-}
+};
 
 function getPagesForEachCategory(categories) {
   var categoryPageNumberMap = {};

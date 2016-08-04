@@ -1,7 +1,11 @@
-var config = require("./config.js");
-var iconService = require("./icon-service.js");
-var actionKitService = require("./action-kit-service.js");
-var controlShiftService = require("./control-shift-service.js");
+var config = require('./config');
+var iconService = require('./icon-service');
+var actionKitService = require('./action-kit-service');
+var controlShiftService = require('./control-shift-service');
+
+var $ = require('jquery');
+var Handlebars = require('handlebars');
+var Tabletop = require('tabletop');
 
 var getMegamapArgs = function() {
   var argsStr = window.location.search.replace(/^\?/, '');
@@ -15,15 +19,13 @@ var getMegamapArgs = function() {
 
   var pairs = argsStr.replace(/^\?/, '').split('&');
   var args = {};
-  unesc = unescape;
-  if (typeof(decodeURIComponent) != 'undefined')
-    unesc = decodeURIComponent;
+
   for (var i = 0; i < pairs.length; ++i) {
     pair = pairs[i].split('=');
     if (pair[0]) {
       if (pair[1])
-        pair[1] = unesc(pair[1].replace(/\+/g, ' '));
-      var key = unesc(pair[0].replace(/\+/g, ' '));
+        pair[1] = decodeURIComponent(pair[1].replace(/\+/g, ' '));
+      var key = decodeURIComponent(pair[0].replace(/\+/g, ' '));
       if (key == "layer") {
         if (!args[key]) {
           args[key] = [];
@@ -98,9 +100,7 @@ new L.Control.GeoSearch({
 
 // Here's the Tabletop feed
 // First we'll initialize Tabletop with our spreadsheet
-var jqueryNoConflict = jQuery;
-
-jqueryNoConflict(document).ready(function() {
+$(document).ready(function() {
   var scriptTag = $("script[src='bundle.js']");
   var root_spreadsheet = scriptTag.data("spreadsheet");
 
