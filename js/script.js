@@ -16,7 +16,7 @@ require('../lib/legendlayers/leaflet.control.legendlayers');
 L.Icon.Default.imagePath = '../node_modules/leaflet/dist/images'; // TODO: needed this to get rid of console error
 require('leaflet-geosearch/js/l.control.geosearch.js');
 require('leaflet-geosearch/js/l.geosearch.provider.google.js');
-require('../lib/legendlayers/leaflet.control.legendlayers.js');
+require('imports?$=jquery!../lib/legendlayers/leaflet.control.legendlayers.js');
 
 require('leaflet/dist/leaflet.css');
 require('leaflet.markercluster/dist/MarkerCluster.css');
