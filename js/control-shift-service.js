@@ -93,6 +93,10 @@ function createCampaignMarkers(data) {
   }
 }
 
+// function renderMarkers() {
+//   return allPageRequests
+// }
+
 function renderMarkers(callback) {
   $.when.apply($, allPageRequests).done(function() {
     callback(layerGroups);

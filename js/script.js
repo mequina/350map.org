@@ -99,21 +99,27 @@ jqueryNoConflict(document).ready(function() {
   var scriptTag = $("script[src='js/script.js']");
   var root_spreadsheet = scriptTag.data("spreadsheet");
 
-  fetchActionKitData(args.actionkit, function(actionKitLayerGroups) {
-    $.extend(layers, actionKitLayerGroups);
-    Object.keys(actionKitLayerGroups).forEach(function(campaignName) {
-      icons[campaignName] = getEventIcon();
-    });
 
+  $.when(
+    fetchActionKitData(args.actionkit, function(actionKitLayerGroups) {
+      debugger;
+      $.extend(layers, actionKitLayerGroups);
+      Object.keys(actionKitLayerGroups).forEach(function(campaignName) {
+        icons[campaignName] = getEventIcon();
+      });
+    }),
     fetchControlShiftData(args.controlshift, function(controlShiftLayerGroups) {
+      debugger;
       $.extend(layers, controlShiftLayerGroups);
       Object.keys(controlShiftLayerGroups).forEach(function(category) {
         icons[category] = getPetitionIcon();
       });
-
-      initializeTabletopObject(root_spreadsheet);
-    });
+    })
+  ).then(function() {
+    debugger;
+    initializeTabletopObject(root_spreadsheet);
   });
+
 });
 
 // Pull data from Google spreadsheet
@@ -284,10 +290,14 @@ function fetchPublicDataSpreadsheets() {
 
 function populateMap() {
   var uiLayers = {};
-  $.each(layers, function(i, n) {
-    if (!layersToShow || ($.inArray(i, layersToShow) !== -1)) {
+  debugger;
+  $.each(layers, function(layerName, n) {
+    debugger;
+    if (!layersToShow || ($.inArray(layerName, layersToShow) !== -1)) {
+      console.log(layerName);
+      console.log(n);
       clusters.addLayers(n.getLayers());
-      uiLayers[i] = L.layerGroup().addTo(map);
+      uiLayers[layerName] = L.layerGroup().addTo(map);
     }
   });
 
