@@ -6,13 +6,14 @@ var controlShiftService = require('./control-shift-service');
 var $ = require('jquery');
 var Handlebars = require('handlebars');
 var Tabletop = require('tabletop');
-var L = require('leaflet');
-L["esri"] = require('esri-leaflet');
+
+require('leaflet');
+require('esri-leaflet');
 require('leaflet-geosearch');
-require('../node_modules/leaflet-geosearch/src/js/l.geosearch.provider.google');
+require('leaflet-geosearch-provider');
 require('leaflet.markercluster');
-L.Icon.Default.imagePath = '../node_modules/leaflet/dist/images';
 require('esri-leaflet-legend');
+require.context('leaflet', true, /^\.\/.*\.png$/);
 
 var getMegamapArgs = function() {
   var argsStr = window.location.search.replace(/^\?/, '');
@@ -57,24 +58,24 @@ if (args.css) {
 }
 
 var lat = parseFloat(args.lat) || 0,
-  lng = parseFloat(args.lng) || 0,
-  zoom = parseInt(args.zoom) || 2,
-  locate = (args.gl !== "n"),
-  searchZoom = parseInt(args.searchZoom) || 8,
-  layerControl = args.lc !== "n",
-  layerControlAlwaysShown = args.lc !== "h",
-  addMarkerControl = args.amc !== "n",
-  hidePastEvents = args.hpe !== "n",
-  dateAttribute = args.dateAttr || "date",
-  layersToShow = args.layer,
-  markerClusterRadius = parseInt(args.clusterRadius) || 80,
-  public_data_layer_queue = [],
-  public_data_layers = {},
-  form_templates = {},
-  MAP_waiting = 0,
-  layers = {},
-  clusters,
-  icons = {};
+    lng = parseFloat(args.lng) || 0,
+    zoom = parseInt(args.zoom) || 2,
+    locate = (args.gl !== "n"),
+    searchZoom = parseInt(args.searchZoom) || 8,
+    layerControl = args.lc !== "n",
+    layerControlAlwaysShown = args.lc !== "h",
+    addMarkerControl = args.amc !== "n",
+    hidePastEvents = args.hpe !== "n",
+    dateAttribute = args.dateAttr || "date",
+    layersToShow = args.layer,
+    markerClusterRadius = parseInt(args.clusterRadius) || 80,
+    public_data_layer_queue = [],
+    public_data_layers = {},
+    form_templates = {},
+    MAP_waiting = 0,
+    layers = {},
+    clusters,
+    icons = {};
 
 var map = new L.Map('map', {
   "zoomControl": false,
@@ -135,7 +136,7 @@ function initializeTabletopObject(dataSpreadsheet) {
     key: dataSpreadsheet,
     callback: startUpLeafet,
     debug: false
-    //proxy: "//ejucovy.github.io/megamap-data"
+      //proxy: "//ejucovy.github.io/megamap-data"
   });
 }
 // This function gets our data from our spreadsheet
@@ -288,7 +289,7 @@ function fetchPublicDataSpreadsheets() {
       },
       simpleSheet: true,
       debug: false
-      //proxy: "//350dotorg.github.io/megamap-data"
+        //proxy: "//350dotorg.github.io/megamap-data"
     });
   }
 
@@ -337,9 +338,9 @@ function populateMap() {
     clusters.removeLayers(layers[e.name].getLayers());
   }).on("addmarker_geosearch_showlocation", function(e) {
     var lat = e.Location.Y,
-      lng = e.Location.X,
-      text = e.Location.Label,
-      layer = e.Layer;
+    lng = e.Location.X,
+    text = e.Location.Label,
+    layer = e.Layer;
 
     var form_template = form_templates[layer.name];
     e.Marker.bindPopup(form_template({
