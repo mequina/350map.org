@@ -10,16 +10,21 @@ var Tabletop = require('tabletop');
 require('leaflet');
 require('leaflet.markercluster');
 require('esri-leaflet');
-require('esri-leaflet-legend');
+// require('esri-leaflet-legend'); // TODO: do we need this?
 require('../lib/legendlayers/leaflet.control.legendlayers');
-require.context('leaflet', true, /^\.\/.*\.png$/);
+// require.context('leaflet', true, /^\.\/.*\.png$/);
+L.Icon.Default.imagePath = '../node_modules/leaflet/dist/images'; // TODO: needed this to get rid of console error
+require('leaflet-geosearch/js/l.control.geosearch.js');
+require('leaflet-geosearch/js/l.geosearch.provider.google.js');
+require('../lib/legendlayers/leaflet.control.legendlayers.js');
 
+require('leaflet/dist/leaflet.css');
 require('leaflet.markercluster/dist/MarkerCluster.css');
 require('leaflet.markercluster/dist/MarkerCluster.Default.css');
-require('leaflet/dist/leaflet.css');
-require('leaflet-geosearch/css/l.geosearch.css')
-require('leaflet-geosearch/js/l.control.geosearch.js')
-require('leaflet-geosearch/js/l.geosearch.provider.google.js')
+require('leaflet-geosearch/css/l.geosearch.css');
+require('../lib/legendlayers/l.legendlayers.css');
+require('../css/megamap.css');
+require('../css/350-megamap-style.css');
 
 var getMegamapArgs = function() {
   var argsStr = window.location.search.replace(/^\?/, '');

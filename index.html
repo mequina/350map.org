@@ -31,29 +31,9 @@
 
   <!--[if lte IE 8]>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.ie.css"/><![endif]-->
-  <!--[if IE]>
-  <style type="text/css">.leaflet-top {
-    top: 60px;
-  }</style>
-  <![endif]-->
 
-  <!-- Javascript -->
-  <script src="node_modules/leaflet/dist/leaflet.js"></script>
-
-  <script type="text/javascript" src="node_modules/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-
-  <script src="node_modules/esri-leaflet/dist/esri-leaflet.js"></script>
-
-  <script src="lib/addmarker/Control.AddMarker.js"></script>
-  <link rel="stylesheet" href="lib/addmarker/addmarker.css"/>
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="lib/addmarker/addmarker.ie.css"/><![endif]-->
-
-  <script src="lib/legendlayers/leaflet.control.legendlayers.js"></script>
-  <link rel="stylesheet" href="lib/legendlayers/l.legendlayers.css"/>
-
-  <link rel="stylesheet" href="css/megamap.css"/>
-  <link rel="stylesheet" href="https://s3.amazonaws.com/s3.350.org/images/350-megamap-style.css"/>
+  <!-- TODO: if I don't include jquery, legendlayers doesn't work -->
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
 </head>
 
 <body>
