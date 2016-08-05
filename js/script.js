@@ -6,6 +6,13 @@ var controlShiftService = require('./control-shift-service');
 var $ = require('jquery');
 var Handlebars = require('handlebars');
 var Tabletop = require('tabletop');
+var L = require('leaflet');
+L["esri"] = require('esri-leaflet');
+require('leaflet-geosearch');
+require('../node_modules/leaflet-geosearch/src/js/l.geosearch.provider.google');
+require('leaflet.markercluster');
+L.Icon.Default.imagePath = '../node_modules/leaflet/dist/images';
+require('esri-leaflet-legend');
 
 var getMegamapArgs = function() {
   var argsStr = window.location.search.replace(/^\?/, '');
