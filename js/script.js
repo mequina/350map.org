@@ -10,7 +10,6 @@ var Tabletop = require('tabletop');
 require('leaflet');
 require('leaflet.markercluster');
 require('esri-leaflet');
-// require('esri-leaflet-legend'); // TODO: do we need this?
 require('../lib/legendlayers/leaflet.control.legendlayers');
 // require.context('leaflet', true, /^\.\/.*\.png$/);
 L.Icon.Default.imagePath = '../node_modules/leaflet/dist/images'; // TODO: needed this to get rid of console error

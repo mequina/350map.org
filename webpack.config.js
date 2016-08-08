@@ -1,4 +1,5 @@
 var path = require('path');
+
 module.exports = {
   entry: './js/script.js',
   output: {
@@ -9,7 +10,6 @@ module.exports = {
     modulesDirectories: ['js', 'node_modules'],
     alias: {
       'esri-leaflet': path.resolve(__dirname, './node_modules/esri-leaflet/dist/esri-leaflet-src.js'),
-      'esri-leaflet-legend': path.resolve(__dirname, './node_modules/esri-leaflet-legend/dist/esri-leaflet-legend-src.js'),
       'leaflet-geosearch': path.resolve(__dirname, './node_modules/leaflet-geosearch/src')
     }
   },
